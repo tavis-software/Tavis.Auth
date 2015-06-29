@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>Tavis.Problem</id>
-        <version>0.9.5-beta3</version>
+        <id>Tavis.Auth</id>
+        <version>0.1.0-beta</version>
         <authors>Darrel Miller</authors>
         <owners>Darrel Miller</owners>
-        <projectUrl>https://github.com/tavis-software/Tavis.Problem</projectUrl>
+        <projectUrl>https://github.com/tavis-software/Tavis.Auth</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Implementation of a application/problem+json</description>
+        <description>Message handler to perform 401 Auth Dance</description>
         <releaseNotes><![CDATA[
-            For full release notes see https://github.com/tavis-software/Tavis.Problem/blob/master/ReleaseNotes.md
+            For full release notes see https://github.com/tavis-software/Tavis.Auth/blob/master/ReleaseNotes.md
             ]]></releaseNotes>
         <dependencies>
-            <dependency id="Newtonsoft.Json" version="5.0.8" />
+  
         </dependencies>
     </metadata>
     <files>
-        <file src="..\artifacts\Problem\lib\**\Tavis.Problem.dll" target="lib" />
+        <file src="..\artifacts\Auth\lib\**\Tavis.Auth.dll" target="lib" />
     </files>
 </package>
