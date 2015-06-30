@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Tavis
 {
-    public class ReactiveAuthHandler : DelegatingHandler
+    public class AuthMessageHandler : DelegatingHandler
     {
       
         private readonly AuthorizationService _authorizationService;
 
-        public ReactiveAuthHandler(HttpMessageHandler innerHandler, AuthorizationService authorizationService)
+        public AuthMessageHandler(HttpMessageHandler innerHandler, AuthorizationService authorizationService)
         {
             InnerHandler = innerHandler;
             _authorizationService = authorizationService;
