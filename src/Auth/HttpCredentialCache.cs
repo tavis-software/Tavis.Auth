@@ -10,7 +10,7 @@ namespace Tavis
     public class HttpCredentialCache : IEnumerable<HttpCredentials>
     {
         private readonly Dictionary<string,HttpCredentials> _Credentials = new Dictionary<string,HttpCredentials>(StringComparer.CurrentCultureIgnoreCase);
-        private Regex _RealmParser = new Regex("Realm=\"(?<Realm>.*)\"");
+        private Regex _RealmParser = new Regex("Realm=\"(?<Realm>.*)\"",RegexOptions.IgnoreCase);
         public void Add(HttpCredentials info)
         {
             var key = MakeKey(info.OriginServer, info.Realm, info.AuthScheme);
