@@ -1,9 +1,9 @@
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Tavis;
 
-namespace AuthTests
+
+namespace Tavis.Auth.Tests
 {
     public class FooCredentials : HttpCredentials
     {

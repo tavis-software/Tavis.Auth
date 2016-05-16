@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 using HawkNet;
 using Tavis;
 
-namespace AuthTests
+namespace Tavis.Auth.Tests
 {
     public class HawkCredentials : HttpCredentials
     {

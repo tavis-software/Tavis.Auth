@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace Tavis
+namespace Tavis.Auth
 {
-    public class AuthorizationService 
+    public class CredentialService 
     {
         private readonly HttpCredentialCache _credentialCache;
         private readonly ConcurrentDictionary<Uri, HttpCredentials> _lastMatchedCredentials = new ConcurrentDictionary<Uri, HttpCredentials>();
 
-        public AuthorizationService(HttpCredentialCache credentialCache)
+        public CredentialService(HttpCredentialCache credentialCache)
         {
             _credentialCache = credentialCache;
         }
@@ -40,6 +41,18 @@ namespace Tavis
             }
 
             return null;
+        }
+
+        public void CreateGatewayAuthKeys(HttpRequestMessage request)
+        {
+
+            var creds = _credentialCache.GetGatewayCredentials(GetOriginUri(request));
+
+
+            foreach (var cred in creds)
+            {
+                request.Headers.Add(cred.GatewayId, cred.CreateGatewayHeaderValue(request));
+            }          
         }
 
         public static Uri GetOriginUri(HttpRequestMessage request)

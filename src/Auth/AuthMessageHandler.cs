@@ -4,14 +4,14 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Tavis
+namespace Tavis.Auth
 {
     public class AuthMessageHandler : DelegatingHandler
     {
       
-        private readonly AuthorizationService _authorizationService;
+        private readonly CredentialService _authorizationService;
 
-        public AuthMessageHandler(HttpMessageHandler innerHandler, AuthorizationService authorizationService)
+        public AuthMessageHandler(HttpMessageHandler innerHandler, CredentialService authorizationService)
         {
             InnerHandler = innerHandler;
             _authorizationService = authorizationService;
@@ -25,6 +25,7 @@ namespace Tavis
             {
                 request.Headers.Authorization = _authorizationService.CreateAuthenticationHeaderFromRequest(request);
             }
+            _authorizationService.CreateGatewayAuthKeys(request);
 
             var response = await base.SendAsync(request, cancellationToken);
             

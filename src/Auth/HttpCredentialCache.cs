@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 
-namespace Tavis
+namespace Tavis.Auth
 {
     public class HttpCredentialCache : IEnumerable<HttpCredentials>
     {
@@ -31,9 +31,20 @@ namespace Tavis
                                       orderby credentials.Priority
                                       select new { creds = credentials, challenge = c };
 
-            var match = matchingCredentials.First();
+            var match = matchingCredentials.FirstOrDefault();
+            if (match == null) return null;
             match.creds.LastChallengeParameters = match.challenge.Parameter;
             return match.creds;
+        }
+
+        public IEnumerable<HttpCredentials> GetGatewayCredentials(Uri requestUri)
+        {
+            var matching = from c in _Credentials.Values
+                           where !String.IsNullOrEmpty(c.GatewayId) 
+                                    && requestUri.AbsoluteUri.StartsWith(c.OriginServer.AbsoluteUri) 
+                           select c;
+
+            return matching;
         }
 
         private string ParseRealm(string parameters)

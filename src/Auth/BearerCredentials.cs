@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace Tavis
+namespace Tavis.Auth
 {
     public class BearerCredentials : HttpCredentials
     {
